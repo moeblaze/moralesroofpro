@@ -1,0 +1,1 @@
+function calculateArea(){if(!window.google||!google.maps||!google.maps.geometry||RoofScanState.points.length<3){document.getElementById('baseSqft').textContent='0';renderEstimate();return}const area=google.maps.geometry.spherical.computeArea(RoofScanState.points);const sqft=area*10.764;document.getElementById('baseSqft').textContent=sqft.toFixed(2);renderEstimate()}

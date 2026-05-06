@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morales Roofing RoofScan Pro | Satellite Roofing Estimator</title>
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <div class="brand"><span class="brand-mark">MR</span><span>Morales Roofing RoofScan Pro</span></div>
+      <div class="nav-links"><a href="#scanner">Scanner</a><a href="#estimate">Estimate</a><a href="#jobs">Saved Jobs</a></div>
+    </nav>
+
+    <section class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Morales Roofing Contractor Tool</p>
+        <h1>Scan roofs faster. Save jobs. Quote with confidence.</h1>
+        <p class="subtitle">A professional roof measurement system for Morales Roofing using satellite view, roof outlining, roofing squares, job records, PDF quotes, and instant pricing.</p>
+        <div class="hero-actions"><a class="btn primary" href="#scanner">Start Roof Scan</a><a class="btn secondary" href="#marketing">See Roofing Workflow</a></div>
+        <div class="badges"><span>Satellite View</span><span>Roof Drawing</span><span>Live Squares</span><span>PDF Quotes</span><span>Saved Jobs</span></div>
+      </div>
+      <aside class="workflow-card">
+        <div class="brand-logo-card"><img src="assets/morales-roofing-logo.svg" alt="Morales Roofing logo" /></div>
+        <div class="card-title"><span class="status"></span> Roof Scan Workflow</div>
+        <div class="workflow-step"><strong>01</strong><span>Enter customer and property details</span></div>
+        <div class="workflow-step"><strong>02</strong><span>Use satellite view to inspect the roof</span></div>
+        <div class="workflow-step"><strong>03</strong><span>Draw roof planes and calculate area</span></div>
+        <div class="workflow-step"><strong>04</strong><span>Save job history and generate a quote</span></div>
+        <div class="sample-metric"><span>Job System</span><strong id="heroJobCount">0 Saved</strong><small>Local save now, Firebase-ready later</small></div>
+      </aside>
+    </section>
+  </header>
+
+  <section class="ad-section" id="marketing">
+    <div class="ad-wrap">
+      <div class="ad-image-card"><img src="assets/roofing-crew-removal-ad.png" alt="Morales Roofing crew working on a roof" /></div>
+      <div class="ad-copy-card">
+        <p class="eyebrow">Built For Real Roofing Crews</p>
+        <h2>From tear-off to quote-ready in one workflow.</h2>
+        <p>Morales Roofing RoofScan Pro helps turn roof work into organized job data. Scan the property, outline roof sections, calculate roofing squares, save customer records, and generate professional quote paperwork.</p>
+        <div class="ad-points">
+          <div><strong>Faster Measurements</strong><span>Use satellite view to prepare estimates before or during the visit.</span></div>
+          <div><strong>Cleaner Job Records</strong><span>Save customer details, roof measurements, notes, totals, and job status.</span></div>
+          <div><strong>Professional Presentation</strong><span>Generate branded Morales Roofing PDF quote summaries for follow-up.</span></div>
+        </div>
+        <a class="btn primary" href="#scanner">Start A Roof Scan</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+    <section class="panel controls" id="scanner">
+      <div class="section-heading"><p class="eyebrow">Roof Scanner</p><h2>Trace the roof and save the job.</h2></div>
+
+      <div class="grid-two">
+        <div><label for="customerName">Customer Name</label><input id="customerName" type="text" placeholder="Customer name" /></div>
+        <div><label for="customerPhone">Customer Phone</label><input id="customerPhone" type="text" placeholder="Customer phone" /></div>
+      </div>
+
+      <label for="address">Customer Address</label><input id="address" type="text" placeholder="Enter customer address" />
+
+      <div class="grid-two">
+        <div><label for="jobStatus">Job Status</label><select id="jobStatus"><option value="Lead">Lead</option><option value="Measured">Measured</option><option value="Quoted">Quoted</option><option value="Approved">Approved</option><option value="Completed">Completed</option></select></div>
+        <div><label for="jobNotes">Job Notes</label><input id="jobNotes" type="text" placeholder="Notes, roof type, urgency, etc." /></div>
+      </div>
+
+      <div class="grid-two">
+        <div><label for="companyPhone">Morales Roofing Phone</label><input id="companyPhone" type="text" placeholder="Company phone" /></div>
+        <div><label for="companyEmail">Morales Roofing Email</label><input id="companyEmail" type="text" placeholder="Company email" /></div>
+      </div>
+
+      <label for="logoUpload">Company Logo For PDF Quote</label><input id="logoUpload" type="file" accept="image/*" />
+      <p class="logo-preview-note">Default Morales Roofing branding is included. Upload a logo here to use it on generated PDF quotes.</p>
+
+      <div class="grid-two">
+        <div><label for="pricePerSquare">Material Price Per Square</label><input id="pricePerSquare" type="number" value="450" min="0" step="25" /></div>
+        <div><label for="laborPerSquare">Labor Per Square</label><input id="laborPerSquare" type="number" value="150" min="0" step="25" /></div>
+      </div>
+
+      <div class="grid-two">
+        <div><label for="overheadPercent">Overhead %</label><input id="overheadPercent" type="number" value="15" min="0" max="80" step="1" /></div><div><label for="profitPercent">Target Profit %</label><input id="profitPercent" type="number" value="25" min="0" max="100" step="1" /></div></div><div class="grid-two"><div><label for="wasteFactor">Waste Factor %</label><input id="wasteFactor" type="number" value="10" min="0" max="50" step="1" /></div>
+        <div><label for="pitchFactor">Pitch Factor</label><select id="pitchFactor"><option value="1">Flat / Low Slope</option><option value="1.054">4/12 Pitch</option><option value="1.118" selected>6/12 Pitch</option><option value="1.202">8/12 Pitch</option><option value="1.302">10/12 Pitch</option><option value="1.414">12/12 Pitch</option></select></div>
+      </div>
+
+      <div class="button-row"><button id="resetBtn">Reset Drawing</button><button id="saveJobBtn" class="gold">Save Job</button><button id="pdfBtn" class="gold">Generate PDF Quote</button><button id="exportBtn">Export Current Job</button></div>
+      <p class="system-message" id="systemMessage">Ready to scan.</p>
+      <div class="autosave-card"><span id="autosaveStatus">Autosave ready.</span><button id="clearAutosaveBtn" type="button">Clear Draft</button></div>
+    </section>
+
+    <section class="map-panel"><div id="map"></div></section>
+
+    <section class="panel" id="estimate">
+      <div class="section-heading"><p class="eyebrow">Estimator</p><h2>Live Roof Estimate</h2></div>
+      <div class="results-grid">
+        <div><span>Base Area</span><strong id="baseSqft">0</strong><small>sq ft</small></div>
+        <div><span>Adjusted Area</span><strong id="adjustedSqft">0</strong><small>sq ft</small></div>
+        <div><span>Roofing Squares</span><strong id="roofingSquares">0</strong><small>squares</small></div>
+        <div><span>Total Estimate</span><strong id="estimatedTotal">$0</strong><small>material + labor</small></div>
+        <div><span>Material Cost</span><strong id="materialCost">$0</strong><small>materials</small></div>
+        <div><span>Labor Cost</span><strong id="laborCost">$0</strong><small>labor</small></div>
+        <div><span>Draw Points</span><strong id="pointCount">0</strong><small>roof outline</small></div>
+        <div><span>Status</span><strong id="activeStatus">Ready</strong><small>scan active</small></div><div><span>Project Cost</span><strong id="projectCost">$0</strong><small>labor + materials + overhead</small></div><div><span>Projected Profit</span><strong id="projectProfit">$0</strong><small>target profit</small></div><div><span>Margin</span><strong id="projectMargin">0%</strong><small>profit percentage</small></div>
+      </div>
+    </section>
+
+    <section class="panel" id="jobs">
+      <div class="section-heading split-heading"><div><p class="eyebrow">CRM Lite</p><h2>Saved Jobs</h2></div><div class="button-row tight"><button id="refreshJobsBtn">Refresh</button><button id="clearJobsBtn">Clear Local Jobs</button></div></div>
+      
+      <div class="cloud-sync-card">
+        <div>
+          <span>Cloud Sync</span>
+          <strong id="cloudSyncStatus">Local Mode</strong>
+          <small id="cloudSyncDetail">Firebase is optional. Add keys to enable multi-device job sync.</small>
+        </div>
+        <div class="button-row tight">
+          <button id="cloudPushBtn">Push Local Jobs To Cloud</button>
+          <button id="cloudPullBtn">Pull Cloud Jobs</button>
+        </div>
+      </div>
+
+      <div class="job-search-row"><input id="jobSearchInput" type="search" placeholder="Search saved jobs by customer, phone, address, notes, or status" /><select id="jobSortSelect"><option value="newest">Newest First</option><option value="oldest">Oldest First</option><option value="highest">Highest Estimate</option><option value="lowest">Lowest Estimate</option><option value="customer">Customer A-Z</option></select></div>
+      <div class="filter-row"><button class="filter-btn active" data-status="All">All</button><button class="filter-btn" data-status="Lead">Lead</button><button class="filter-btn" data-status="Measured">Measured</button><button class="filter-btn" data-status="Quoted">Quoted</button><button class="filter-btn" data-status="Approved">Approved</button><button class="filter-btn" data-status="Completed">Completed</button></div>
+      <div class="pipeline-summary" id="pipelineSummary"></div>
+      <div class="jobs-grid" id="jobsGrid"><div class="empty-state">No saved jobs yet. Scan a roof and click Save Job.</div></div>
+    </section>
+  </main>
+
+  <div class="mobile-action-bar"><a href="#scanner">Scan</a><a href="#estimate">Estimate</a><a href="#jobs">Jobs</a><button id="mobileSaveBtn">Save</button></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script type="module" src="src/firebase-sync.js"></script>
+  <script src="src/firebase-config.example.js"></script>
+  <script src="src/app.js"></script>
+  <script src="src/jobs.js"></script>
+  <script src="src/estimate.js"></script>
+  <script src="src/map.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places,geometry&callback=initMap"></script>
+</body>
+</html>

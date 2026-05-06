@@ -1,0 +1,1 @@
+window.IR_FIREBASE_ENABLED=false;
