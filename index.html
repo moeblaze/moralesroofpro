@@ -5,6 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Morales Roofing RoofScan Pro | Satellite Roofing Estimator</title>
   <link rel="stylesheet" href="styles/style.css" />
+
+  <style>
+    #scanner, #address, .map-panel, #map {
+      position: relative;
+      z-index: 2;
+    }
+    #address {
+      pointer-events: auto !important;
+      user-select: text;
+    }
+    #map {
+      min-height: 520px;
+      width: 100%;
+      background: #111;
+      border-radius: 18px;
+    }
+    .map-status-panel {
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(212,175,55,.25);
+      border-radius: 14px;
+      background: rgba(0,0,0,.45);
+      color: #f7f3e9;
+      display: grid;
+      gap: 4px;
+    }
+    .map-status-panel strong {
+      color: #d4af37;
+    }
+    .map-status-panel span,
+    .map-status-panel small {
+      color: rgba(247,243,233,.75);
+    }
+  </style>
+
 </head>
 <body>
   <header class="hero">
@@ -89,7 +124,14 @@
       <div class="autosave-card"><span id="autosaveStatus">Autosave ready.</span><button id="clearAutosaveBtn" type="button">Clear Draft</button></div>
     </section>
 
-    <section class="map-panel"><div id="map"></div></section>
+    <section class="map-panel">
+      <div class="map-status-panel" id="mapStatusPanel">
+        <strong>Map Loading Status</strong>
+        <span id="mapStatusText">Waiting for Google Maps...</span>
+        <small>If the map does not appear, confirm Maps JavaScript API, Places API, billing, and domain restrictions are enabled.</small>
+      </div>
+      <div id="map"></div>
+    </section>
 
     <section class="panel" id="estimate">
       <div class="section-heading"><p class="eyebrow">Estimator</p><h2>Live Roof Estimate</h2></div>
@@ -136,6 +178,41 @@
   <script src="src/jobs.js"></script>
   <script src="src/estimate.js"></script>
   <script src="src/map.js"></script>
+  
+  <script>
+    window.gm_authFailure = function () {
+      const status = document.getElementById('mapStatusText');
+      if (status) {
+        status.textContent = 'Google Maps authentication failed. Check API key, billing, enabled APIs, and domain restrictions.';
+      }
+      console.error('Google Maps authentication failed. Check API key restrictions, billing, and enabled APIs.');
+    };
+
+    window.addEventListener('error', function (event) {
+      if (String(event.filename || '').includes('maps.googleapis.com')) {
+        const status = document.getElementById('mapStatusText');
+        if (status) {
+          status.textContent = 'Google Maps script failed to load. Check API key restrictions and enabled APIs.';
+        }
+      }
+    });
+
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        const status = document.getElementById('mapStatusText');
+        const map = document.getElementById('map');
+        if (window.google && google.maps) {
+          if (status) status.textContent = 'Google Maps script loaded. If map is blank, check src/map.js and initMap.';
+        } else {
+          if (status) status.textContent = 'Google Maps did not load. Check API key, billing, and domain restrictions.';
+        }
+        if (map && !map.style.minHeight) {
+          map.style.minHeight = '520px';
+        }
+      }, 2500);
+    });
+  </script>
+
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_Re5_UyDwiXmafy4cwDE_MWvl8rCZras&libraries=places,geometry&callback=initMap"></script>
 </body>
 </html>
